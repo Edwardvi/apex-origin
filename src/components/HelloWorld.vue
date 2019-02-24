@@ -31,11 +31,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import axios from "axios";
 
 export default {
-
   name: "HelloWorld",
   data() {
     return {
@@ -49,8 +47,10 @@ export default {
   props: {},
   methods: {
     search() {
+      let url = "https://public-api.tracker.gg/apex/v1/standard/profile/"; //部署时需要注释掉下面一行用此行。开发环境则相反
+      // let url = '/api' ;//开发环境用此行
       axios
-        .get("/api/" + this.platform + "/" + this.playname, {
+        .get(url + this.platform + "/" + this.playname, {
           headers: { "TRN-Api-Key": "b18c95ec-a98e-44d6-9434-72695d83b835" }
         })
         .then(response => (this.msg = response.data))

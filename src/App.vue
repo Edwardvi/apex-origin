@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <img
+    <!-- <img
       id="tu1"
       src="http://5b0988e595225.cdn.sohucs.com/images/20190214/f25953ec264446888d00a42c6a0fde62.jpeg"
-    >
-
+    > -->
+    <h1>APEX英雄榜</h1>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>

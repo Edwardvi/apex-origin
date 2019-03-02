@@ -1,18 +1,14 @@
 <template>
   <div class="hello">
-    <el-row :gutter="20" id="search">
-      <!-- <el-form :inline="true" class="demo-form-inline" > -->
+    <el-row :gutter="24" id="search">
       <el-col :span="5">
-        <!-- <el-form-item> -->
         <el-select :inline="true" v-model="platform">
           <el-option value="5" label="PC"></el-option>
           <el-option value="2" label="PSN"></el-option>
           <el-option value="1" label="XBOX"></el-option>
         </el-select>
-        <!-- </el-form-item> -->
       </el-col>
       <el-col :span="13">
-        <!-- <el-form-item> -->
         <el-input
           :inline="true"
           id="idinput"
@@ -20,15 +16,13 @@
           v-model="playname"
           placeholder="请输入你的角色名..."
         ></el-input>
-        <!-- </el-form-item> -->
       </el-col>
       <el-col :span="4">
-        <!-- <el-form-item > -->
         <el-button :inline="true" class="bar" icon="el-icon-search" @click="search"></el-button>
-        <!-- </el-form-item> -->
       </el-col>
-      <!-- </el-form> -->
     </el-row>
+
+
 
     <el-card :gutter="10" class v-if="msg" id="zonglan">
       <div class="text item">{{ this.meta.platformUserHandle }}</div>
@@ -59,7 +53,6 @@
           <h3>赞助商</h3>
         </el-card>
       </el-col>
-     
     </el-row>
 
     <!-- <br>check out the
@@ -116,14 +109,35 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-select .el-input {
+  width: 130px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+  width: 70%;
+}
+
 .hello {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
-
+.domain_search_background
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #487fee, #b632fa);
+	opacity: 0.33;
+	border-radius: 45px;
+	z-index: 1;
+}
 #search {
   margin: 2%;
+  justify-content: center;
 }
 
 #zonglan {

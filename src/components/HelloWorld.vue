@@ -1,36 +1,36 @@
 <template>
   <div class="hello">
-    <el-row :gutter="20">
+    <el-row :gutter="20" id="search">
       <!-- <el-form :inline="true" class="demo-form-inline" > -->
-        <el-col :span="4">
-          <!-- <el-form-item> -->
-            <el-select :inline="true" v-model="platform" >
-              <el-option value="5" label="PC"></el-option>
-              <el-option value="2" label="PSN"></el-option>
-              <el-option value="1" label="XBOX"></el-option>
-            </el-select>
-          <!-- </el-form-item> -->
-        </el-col>
-        <el-col :span="16">
-          <!-- <el-form-item> -->
-            <el-input
-              :inline="true"
-              id="idinput"
-              type="text"
-              v-model="playname"
-              placeholder="请输入你的角色名..."
-            ></el-input>
-          <!-- </el-form-item> -->
-        </el-col>
-        <el-col :span="4">
-          <!-- <el-form-item > -->
-            <el-button :inline="true" class="bar" icon="el-icon-search" @click="search"></el-button>
-          <!-- </el-form-item> -->
-        </el-col>
+      <el-col :span="5">
+        <!-- <el-form-item> -->
+        <el-select :inline="true" v-model="platform">
+          <el-option value="5" label="PC"></el-option>
+          <el-option value="2" label="PSN"></el-option>
+          <el-option value="1" label="XBOX"></el-option>
+        </el-select>
+        <!-- </el-form-item> -->
+      </el-col>
+      <el-col :span="13">
+        <!-- <el-form-item> -->
+        <el-input
+          :inline="true"
+          id="idinput"
+          type="text"
+          v-model="playname"
+          placeholder="请输入你的角色名..."
+        ></el-input>
+        <!-- </el-form-item> -->
+      </el-col>
+      <el-col :span="4">
+        <!-- <el-form-item > -->
+        <el-button :inline="true" class="bar" icon="el-icon-search" @click="search"></el-button>
+        <!-- </el-form-item> -->
+      </el-col>
       <!-- </el-form> -->
     </el-row>
 
-    <el-card class="" v-if="msg">
+    <el-card :gutter="10" class v-if="msg" id="zonglan">
       <div class="text item">{{ this.meta.platformUserHandle }}</div>
       <div class="text item">最后更新:{{ this.meta.cacheExpireDate }}</div>
       <div
@@ -40,20 +40,26 @@
       >{{ o.metadata.name }}：{{ o.value }}，全区排名{{o.percentile + '%'}}</div>
     </el-card>
     <el-row :gutter="20">
-      <el-col :span="6" v-for="o in this.child" :key="o">
-        <el-card :body-style="{ padding: '0px' }" class="box-card" v-if="msg">
-          <div class="text item">
-            {{ o.metadata.legend_name }}
+      <el-col :span="16" v-for="o in this.child" :key="o">
+        <el-card class="box-card" v-if="msg">
+          <h3>{{ o.metadata.legend_name }}</h3>
+          <div class="tuwen">
             <img :src=" o.metadata.icon " class="image">
-            <div
-              v-for="i in o.stats"
-              :key="i"
-              class="text item"
-              style="padding: 14px;"
-            >{{ i.metadata.name }}:{{i.value}},排名{{i.displayRank}},前{{i.percentile}}%</div>
+
+            <div class="legend_card">
+              <div
+                v-for="i in o.stats"
+                :key="i"
+                class="detail_text"
+              >{{ i.metadata.name }}:{{i.value}},排名{{i.displayRank}}超过{{i.percentile}}%玩家</div>
+            </div>
           </div>
         </el-card>
+        <el-card class="box-card" v-if="msg">
+          <h3>赞助商</h3>
+        </el-card>
       </el-col>
+     
     </el-row>
 
     <!-- <br>check out the
@@ -110,20 +116,47 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#search {
+  margin: 2%;
+}
+
+#zonglan {
+  margin: 1%;
+}
+
 #idinput {
   width: 200%;
 }
 
-#box-card {
+.box-card {
   display: flex;
+  margin: 2%;
+  flex-direction: row;
+}
+
+.tuwen {
+  display: flex;
+}
+.legend_card {
+  display: block;
+}
+
+.image {
+  width: 147.69px;
+  height: 165.34px;
+  display: block;
   justify-content: center;
 }
 
-
-.image {
-  width: 50%;
-  display: block;
-  justify-content: center;
+.detail_text {
+  display: inline-block;
+  padding: 14px;
 }
 
 .demo-form-inline {
@@ -132,7 +165,8 @@ export default {
 }
 
 h3 {
-  margin: 40px 0 0;
+  margin: 4px 0 0;
+  margin-left: 18px;
 }
 ul {
   list-style-type: none;
